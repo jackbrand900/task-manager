@@ -2,10 +2,8 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './TaskList.css';
 
-function TaskList({ tasks, onStart, onPause, onResume, onCancel, onDelete }) {
+function TaskList({ tasks, onStart, onPause, onResume, onCancel, onDelete, sortOption, filterStatus }) {
   const [tick, setTick] = useState(0);
-  const [sortOption, setSortOption] = useState('created-newest');
-  const [filterStatus, setFilterStatus] = useState('all');
 
   useEffect(() => {
     const hasRunningTasks = tasks.some(task => task.status === 'In Progress');
@@ -133,38 +131,6 @@ function TaskList({ tasks, onStart, onPause, onResume, onCancel, onDelete }) {
 
   return (
     <div className="task-sections-wrapper">
-      <div className="task-sort-controls">
-        <div className="task-sort">
-          <label htmlFor="sort">Sort tasks:</label>
-          <select
-            id="sort"
-            value={sortOption}
-            onChange={(e) => setSortOption(e.target.value)}
-          >
-            <option value="created-newest">Created: Newest First</option>
-            <option value="created-oldest">Created: Oldest First</option>
-            <option value="title-az">Title: A → Z</option>
-            <option value="title-za">Title: Z → A</option>
-          </select>
-        </div>
-
-        <div className="task-filter">
-          <label htmlFor="filter">Filter status:</label>
-          <select
-            id="filter"
-            value={filterStatus}
-            onChange={(e) => setFilterStatus(e.target.value)}
-          >
-            <option value="all">All</option>
-            <option value="Pending">Pending</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Paused">Paused</option>
-            <option value="Cancelled">Cancelled</option>
-            <option value="Completed">Completed</option>
-          </select>
-        </div>
-      </div>
-
       <div className="task-sections">
         <div className="task-section">
           <h2>Active / Paused Tasks</h2>

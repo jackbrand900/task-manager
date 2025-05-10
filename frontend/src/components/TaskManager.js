@@ -5,6 +5,8 @@ import TaskList from './TaskList';
 
 function TaskManager({ apiBase = 'http://localhost:5050' }) {
   const [tasks, setTasks] = useState([]);
+  const [sortOption, setSortOption] = useState('created-newest');
+  const [filterStatus, setFilterStatus] = useState('all');
 
   const fetchTasks = async () => {
     const res = await fetch(`${apiBase}/tasks`);
@@ -56,7 +58,40 @@ function TaskManager({ apiBase = 'http://localhost:5050' }) {
     <>
       <div className="task-header-wrapper">
         <h1>Task Manager</h1>
-        <TaskForm onCreate={createTask} />
+        <div className="task-controls-wrapper">
+          <TaskForm onCreate={createTask} />
+          <div className="task-sort-controls">
+            <div className="task-sort">
+              <label htmlFor="sort">Sort tasks:</label>
+              <select
+                id="sort"
+                value={sortOption}
+                onChange={(e) => setSortOption(e.target.value)}
+              >
+                <option value="created-newest">Created: Newest First</option>
+                <option value="created-oldest">Created: Oldest First</option>
+                <option value="title-az">Title: A → Z</option>
+                <option value="title-za">Title: Z → A</option>
+              </select>
+            </div>
+
+            <div className="task-filter">
+              <label htmlFor="filter">Filter status:</label>
+              <select
+                id="filter"
+                value={filterStatus}
+                onChange={(e) => setFilterStatus(e.target.value)}
+              >
+                <option value="all">All</option>
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Paused">Paused</option>
+                <option value="Cancelled">Cancelled</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="task-manager-container">
@@ -67,6 +102,8 @@ function TaskManager({ apiBase = 'http://localhost:5050' }) {
           onResume={resumeTask}
           onCancel={cancelTask}
           onDelete={deleteTask}
+          sortOption={sortOption}
+          filterStatus={filterStatus}
         />
       </div>
     </>

@@ -1,23 +1,20 @@
 .task-manager-container {
-    padding: 40px 60px;
+    padding: 0 0 40px 0;
     font-family: 'Segoe UI', sans-serif;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
-  }
-  
+}
+
 .task-manager-container h1 {
     font-size: 2.5rem;
     color: #222;
     margin-bottom: 30px;
-    margin-left: 16px;
 }
 
 .task-header-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 0 16px;
+    align-items: stretch;
     margin-bottom: 32px;
 }
 
@@ -25,9 +22,46 @@
     margin-bottom: 16px;
     color: #333;
     font-size: 2rem;
-    margin-left: 16px;
+    text-align: center;
 }
 
-.task-manager-container {
-    padding: 0 16px;
+.task-controls-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    gap: 32px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.task-sort-controls {
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+}
+
+.task-sort,
+.task-filter {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    gap: 4px;
+    min-width: 160px;
+}
+
+.task-sort label,
+.task-filter label {
+    font-weight: 500;
+    color: #444;
+}
+
+.task-sort select,
+.task-filter select {
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
 }

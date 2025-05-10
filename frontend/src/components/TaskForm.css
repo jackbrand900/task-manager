@@ -2,27 +2,31 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: center;
-  }
+    justify-content: flex-start;
+    flex: 1;
+    align-items: flex-end;
+    margin: 0;
+}
   
-  .task-form input {
-    padding: 8px 12px;
+.task-form input {
+    padding: 6px 10px;
     border-radius: 6px;
     border: 1px solid #ccc;
-    font-size: 1rem;
-    min-width: 220px;
-  }
+    font-size: 0.9rem;
+    min-width: 180px;
+}
   
-  .task-form button {
-    padding: 8px 16px;
+.task-form button {
+    padding: 6px 14px;
     border-radius: 6px;
     border: none;
     background-color: #28a745;
     color: white;
     font-weight: 500;
     cursor: pointer;
-  }
+    font-size: 0.9rem;
+}
   
-  .task-form button:hover {
+.task-form button:hover {
     background-color: #218838;
-  }
+}

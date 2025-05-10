@@ -1,5 +1,5 @@
 .task-sections-wrapper {
-    padding: 0 16px 64px;
+    padding: 0 0 64px;
   }
   
   /* Sort + Filter controls */
@@ -48,7 +48,7 @@
   }
   
   .task-section h2 {
-    margin-top: 40px;
+    margin-top: 10px;
     margin-bottom: 16px;
     color: #444;
     border-bottom: 1px solid #ddd;
