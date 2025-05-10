@@ -1,0 +1,33 @@
+.task-manager-container {
+    padding: 40px 60px;
+    font-family: 'Segoe UI', sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+.task-manager-container h1 {
+    font-size: 2.5rem;
+    color: #222;
+    margin-bottom: 30px;
+    margin-left: 16px;
+}
+
+.task-header-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 16px;
+    margin-bottom: 32px;
+}
+
+.task-header-wrapper h1 {
+    margin-bottom: 16px;
+    color: #333;
+    font-size: 2rem;
+    margin-left: 16px;
+}
+
+.task-manager-container {
+    padding: 0 16px;
+}
