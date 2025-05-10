@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import './TaskList.css';
 
 function TaskList({ tasks, onStart, onPause, onResume, onCancel, onDelete }) {
@@ -9,7 +10,6 @@ function TaskList({ tasks, onStart, onPause, onResume, onCancel, onDelete }) {
   useEffect(() => {
     const hasRunningTasks = tasks.some(task => task.status === 'In Progress');
     if (!hasRunningTasks) return;
-
     const interval = setInterval(() => setTick(t => t + 1), 500);
     return () => clearInterval(interval);
   }, [tasks]);
@@ -65,60 +65,70 @@ function TaskList({ tasks, onStart, onPause, onResume, onCancel, onDelete }) {
   const completedTasks = sortTasks(filterTasks(tasks.filter(t => completedStatuses.includes(t.status))));
 
   const renderTask = (task) => (
-    <div className="task-card" key={task.id}>
-      <button className="delete-button" onClick={() => onDelete(task.id)}>×</button>
+    <motion.div
+      layout
+      key={task.id}
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.25 }}
+    >
+      <div className="task-card">
+        <button className="delete-button" onClick={() => onDelete(task.id)}>×</button>
 
-      <div className="task-header">
-        <h3>{task.title}</h3>
-        <p>
-          Status: <span className={`status status-${task.status.toLowerCase().replace(' ', '-')}`}>
-            {task.status}
-          </span>
-        </p>
-      </div>
-
-      {task.description && <p className="task-desc">{task.description}</p>}
-
-      {(task.status === 'In Progress' || task.status === 'Paused') && (
-        <div className="progress-bar">
-          <div
-            className="progress-fill"
-            style={{ width: `${getProgress(task)}%` }}
-          ></div>
+        <div className="task-header">
+          <h3>{task.title}</h3>
+          <p>
+            Status:{' '}
+            <span className={`status status-${task.status.toLowerCase().replace(' ', '-')}`}>
+              {task.status}
+            </span>
+          </p>
         </div>
-      )}
 
-      <div className="task-timestamps">
-        <div>
-          <span className="timestamp-label">Created:</span> {formatDate(task.createdAt)}
-        </div>
-        {task.status === 'Completed' && task.completedAt && (
-          <div>
-            <span className="timestamp-label">Completed:</span> {formatDate(task.completedAt)}
+        {task.description && <p className="task-desc">{task.description}</p>}
+
+        {(task.status === 'In Progress' || task.status === 'Paused') && (
+          <div className="progress-bar">
+            <div
+              className="progress-fill"
+              style={{ width: `${getProgress(task)}%` }}
+            ></div>
           </div>
         )}
-        {task.status === 'Cancelled' && task.cancelledAt && (
-          <div>
-            <span className="timestamp-label">Cancelled:</span> {formatDate(task.cancelledAt)}
-          </div>
-        )}
-      </div>
 
-      <div className="task-actions">
-        {task.status === 'Pending' && (
-          <button onClick={() => onStart(task.id)}>Run</button>
-        )}
-        {task.status === 'In Progress' && (
-          <button onClick={() => onPause(task.id)}>Pause</button>
-        )}
-        {task.status === 'Paused' && (
-          <button onClick={() => onResume(task.id)}>Resume</button>
-        )}
-        {['Pending', 'In Progress', 'Paused'].includes(task.status) && (
-          <button className="cancel-button" onClick={() => onCancel(task.id)}>Cancel</button>
-        )}
+        <div className="task-timestamps">
+          <div>
+            <span className="timestamp-label">Created:</span> {formatDate(task.createdAt)}
+          </div>
+          {task.status === 'Completed' && task.completedAt && (
+            <div>
+              <span className="timestamp-label">Completed:</span> {formatDate(task.completedAt)}
+            </div>
+          )}
+          {task.status === 'Cancelled' && task.cancelledAt && (
+            <div>
+              <span className="timestamp-label">Cancelled:</span> {formatDate(task.cancelledAt)}
+            </div>
+          )}
+        </div>
+
+        <div className="task-actions">
+          {task.status === 'Pending' && (
+            <button onClick={() => onStart(task.id)}>Run</button>
+          )}
+          {task.status === 'In Progress' && (
+            <button onClick={() => onPause(task.id)}>Pause</button>
+          )}
+          {task.status === 'Paused' && (
+            <button onClick={() => onResume(task.id)}>Resume</button>
+          )}
+          {['Pending', 'In Progress', 'Paused'].includes(task.status) && (
+            <button className="cancel-button" onClick={() => onCancel(task.id)}>Cancel</button>
+          )}
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 
   return (
@@ -158,16 +168,24 @@ function TaskList({ tasks, onStart, onPause, onResume, onCancel, onDelete }) {
       <div className="task-sections">
         <div className="task-section">
           <h2>Active / Paused Tasks</h2>
-          <div className="task-list">
-            {pendingTasks.length ? pendingTasks.map(renderTask) : <p>No matching active tasks</p>}
-          </div>
+          <motion.div layout className="task-list">
+            <AnimatePresence>
+              {pendingTasks.length
+                ? pendingTasks.map(renderTask)
+                : <p>No matching active tasks</p>}
+            </AnimatePresence>
+          </motion.div>
         </div>
 
         <div className="task-section">
           <h2>Completed / Cancelled Tasks</h2>
-          <div className="task-list">
-            {completedTasks.length ? completedTasks.map(renderTask) : <p>No matching completed tasks</p>}
-          </div>
+          <motion.div layout className="task-list">
+            <AnimatePresence>
+              {completedTasks.length
+                ? completedTasks.map(renderTask)
+                : <p>No matching completed tasks</p>}
+            </AnimatePresence>
+          </motion.div>
         </div>
       </div>
     </div>
