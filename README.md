@@ -41,7 +41,7 @@ Update the frontend `apiBase` if needed in `TaskManager.js` to match the backend
 
 - **React** used for dynamic frontend UI with progress bars and task controls.
 - **Express** server simulates long-running background jobs with timers.
-- **Docker** is used to containerize frontend and backend for simple local and production deployment.
+- **Docker** is used to containerize frontend and backend for simple deployment.
 - **Framer Motion** provides smooth animations when tasks are added/removed (I did this for fun because the animation adds a better feel to the app).
 - Tasks are stored in memory (not persisted) for demo purposes.
 - Task simulation assumes a default duration of ~30 seconds unless paused.
@@ -49,6 +49,13 @@ Update the frontend `apiBase` if needed in `TaskManager.js` to match the backend
 ---
 
 ## 2. Testing Instructions
+
+### Run Frontend Tests:
+
+```bash
+cd frontend
+npm test
+```
 
 ### Run Backend Tests:
 
