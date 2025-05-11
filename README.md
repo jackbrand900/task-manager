@@ -8,6 +8,8 @@ This full-stack web app allows users to create, start, pause, resume, cancel, an
 
 ### Docker (Recommended Way To Run)
 
+From the root directory, run
+
 ```bash
 docker-compose up --build
 ```
