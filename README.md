@@ -71,6 +71,7 @@ AI was used for assistance with CSS styling and generating tests.
 ## 2. Testing Instructions
 
 ### Run Frontend Tests:
+From the root directory, run:
 
 ```bash
 cd frontend
@@ -78,6 +79,7 @@ npm test
 ```
 
 ### Run Backend Tests:
+From the root directory, run:
 
 ```bash
 cd backend
