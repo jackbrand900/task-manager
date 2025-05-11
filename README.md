@@ -43,7 +43,7 @@ Update the frontend `apiBase` if needed in `TaskManager.js` to match the backend
 
 ---
 
-## Tech Stack
+## Technical Decisions
 
 - **React** used for dynamic frontend UI with progress bars and task controls.
 - **Express** server simulates long-running background jobs with timers.
@@ -51,6 +51,18 @@ Update the frontend `apiBase` if needed in `TaskManager.js` to match the backend
 - **Framer Motion** provides smooth animations when tasks are added/removed (I did this for fun because the animation adds a better feel to the app).
 - Tasks are stored in memory (not persisted) for demo purposes.
 - Task simulation assumes a default duration of ~30 seconds unless paused.
+
+I chose to use React and Express because of their simplicity and my familiarity with these tools, other technologies could be used depending on specific use cases / constraints.
+
+AI was used for assistance with CSS styling and generating tests.
+
+---
+
+**Assumptions:**
+
+- The user interacts with a simulated task lifecycle (no actual job is run).
+- Tasks do not persist across backend restarts (no DB used).
+- CORS is enabled to allow cross-origin communication in local/dev setups.
 
 ---
 
