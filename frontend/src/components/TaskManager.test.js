@@ -1,3 +1,4 @@
+// Tests were generated with assistance of Claude
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TaskManager from './TaskManager';

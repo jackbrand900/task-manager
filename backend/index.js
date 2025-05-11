@@ -27,13 +27,9 @@ app.post('/tasks', (req, res) => {
 });
 
 app.get('/tasks', (req, res) => {
-  const response = Object.values(tasks).map((task) => ({
+  const response = Object.values(tasks).map(task => ({
     ...task,
     startedAt: task._startedAt || null,
-    duration: task.duration,
-    createdAt: task.createdAt,
-    completedAt: task.completedAt,
-    cancelledAt: task.cancelledAt,
   }));
   res.json(response);
 });
@@ -52,14 +48,7 @@ app.post('/tasks/:id/start', (req, res) => {
     delete task._startedAt;
   }, task.remaining);
 
-  res.json({
-    ...task,
-    startedAt: task._startedAt,
-    duration: task.duration,
-    createdAt: task.createdAt,
-    completedAt: task.completedAt,
-    cancelledAt: task.cancelledAt,
-  });
+  res.json({ ...task, startedAt: task._startedAt });
 });
 
 app.post('/tasks/:id/pause', (req, res) => {
@@ -73,14 +62,7 @@ app.post('/tasks/:id/pause', (req, res) => {
   delete timers[task.id];
   delete task._startedAt;
 
-  res.json({
-    ...task,
-    startedAt: null,
-    duration: task.duration,
-    createdAt: task.createdAt,
-    completedAt: task.completedAt,
-    cancelledAt: task.cancelledAt,
-  });
+  res.json({ ...task, startedAt: null });
 });
 
 app.post('/tasks/:id/resume', (req, res) => {
@@ -97,14 +79,7 @@ app.post('/tasks/:id/resume', (req, res) => {
     delete task._startedAt;
   }, task.remaining);
 
-  res.json({
-    ...task,
-    startedAt: task._startedAt,
-    duration: task.duration,
-    createdAt: task.createdAt,
-    completedAt: task.completedAt,
-    cancelledAt: task.cancelledAt,
-  });
+  res.json({ ...task, startedAt: task._startedAt });
 });
 
 app.post('/tasks/:id/cancel', (req, res) => {
@@ -119,14 +94,7 @@ app.post('/tasks/:id/cancel', (req, res) => {
   delete timers[task.id];
   delete task._startedAt;
 
-  res.json({
-    ...task,
-    startedAt: null,
-    duration: task.duration,
-    createdAt: task.createdAt,
-    completedAt: task.completedAt,
-    cancelledAt: task.cancelledAt,
-  });
+  res.json({ ...task, startedAt: null });
 });
 
 app.delete('/tasks/:id', (req, res) => {
@@ -141,6 +109,11 @@ app.delete('/tasks/:id', (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log('Backend running on port 5000');
-});
+// Only start the server if not in test mode
+if (require.main === module) {
+  app.listen(5000, () => {
+    console.log('Backend running on port 5000');
+  });
+}
+
+module.exports = app;

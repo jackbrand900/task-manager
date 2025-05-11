@@ -1,3 +1,4 @@
+// Tests were generated with assistance of Claude
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TaskForm from './TaskForm';

@@ -55,13 +55,20 @@ function TaskManager({ apiBase = 'http://localhost:5050' }) {
     fetchTasks();
   };
 
-  // Fetch the tasks from the API every 3 seconds to get updated task statuses, 
-  // would make this dynamic in a production environment to optimize API calls only for running tasks
+  // Fetch the tasks from the API every 3 seconds to get updated task statuses 
   useEffect(() => {
     fetchTasks();
-    const interval = setInterval(fetchTasks, 3000);
+  
+    // Only start polling if there are tasks in progress
+    const interval = setInterval(() => {
+      const hasRunningTasks = tasks.some(task => task.status === 'In Progress');
+      if (hasRunningTasks) {
+        fetchTasks();
+      }
+    }, 3000);
+  
     return () => clearInterval(interval);
-  }, []);
+  }, [tasks]);
 
   return (
     <>
