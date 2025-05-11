@@ -112,7 +112,7 @@ app.delete('/tasks/:id', (req, res) => {
 // Only start the server if not in test mode
 if (require.main === module) {
   app.listen(5000, () => {
-    console.log('Backend running on port 5000');
+    console.log('Backend running on port 5050');
   });
 }
 
