@@ -32,7 +32,7 @@ Or shut down the existing app using ctrl-c and re-run the first command.
 - **React** used for dynamic frontend UI with progress bars and task controls.
 - **Express** server simulates long-running background jobs with timers.
 - **Docker** is used to containerize frontend and backend for simple deployment.
-- **Framer Motion** provides smooth animations when tasks are added/removed (I did this for fun because the animation adds a better feel to the app).
+- **Framer Motion** provides smooth animations when tasks are added/removed/sorted (I did this for fun because the animation adds a better feel to the app).
 - Tasks are stored in memory (not persisted) for demo purposes.
 - Task simulation assumes a default duration of ~30 seconds unless paused.
 
