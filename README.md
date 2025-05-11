@@ -6,8 +6,6 @@ This full-stack web app allows users to create, start, pause, resume, cancel, an
 
 ## 1. Setup & Run Instructions
 
-### Docker (Recommended Way To Run)
-
 From the root directory, run
 
 ```bash
@@ -22,26 +20,6 @@ docker-compose down -v && docker-compose up --build
 
 - Frontend runs on: `http://localhost:3000`
 - Backend runs on: `http://localhost:5050`
-
-### Manual Setup (If You Have To)
-
-#### Backend
-
-```bash
-cd backend
-npm install
-npm start
-```
-
-#### Frontend
-
-```bash
-cd frontend
-npm install
-npm start
-```
-
-Update the frontend `apiBase` if needed in `TaskManager.js` to match the backend port if you're using a different port.
 
 ---
 
