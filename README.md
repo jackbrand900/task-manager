@@ -6,7 +6,9 @@ This full-stack web app allows users to create, start, pause, resume, cancel, an
 
 ## 1. Setup & Run Instructions
 
-From the root directory, run
+You can get the project either by cloning this repo or downloading it as a zip file. Once the code is on your machine, navigate to the root directory 'task-manager'.
+
+To run the app, from the root directory, run
 
 ```bash
 docker-compose up --build
