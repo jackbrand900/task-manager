@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import './TaskManager.css';
 import TaskForm from './TaskForm';
 import TaskList from './TaskList';
+const baseUrl = 'http://localhost:5050';
 
-function TaskManager({ apiBase = 'http://localhost:5050' }) {
+function TaskManager({ apiBase = baseUrl }) {
   const [tasks, setTasks] = useState([]);
   const [sortOption, setSortOption] = useState('created-newest');
   const [filterStatus, setFilterStatus] = useState('all');
@@ -55,20 +56,14 @@ function TaskManager({ apiBase = 'http://localhost:5050' }) {
     fetchTasks();
   };
 
-  // Fetch the tasks from the API every 3 seconds to get updated task statuses 
+  // Fetch the tasks from the API every 3 seconds to get updated task statuses. 
+  // I would use a dedicated polling controller in production environment to optimize API calls
+  // to fetch only for running tasks, but this approach doesn't add much server load at the moment
   useEffect(() => {
     fetchTasks();
-  
-    // Only start polling if there are tasks in progress
-    const interval = setInterval(() => {
-      const hasRunningTasks = tasks.some(task => task.status === 'In Progress');
-      if (hasRunningTasks) {
-        fetchTasks();
-      }
-    }, 3000);
-  
+    const interval = setInterval(fetchTasks, 3000);
     return () => clearInterval(interval);
-  }, [tasks]);
+  }, []);
 
   return (
     <>

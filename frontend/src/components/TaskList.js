@@ -5,11 +5,11 @@ import './TaskList.css';
 function TaskList({ tasks, onStart, onPause, onResume, onCancel, onDelete, sortOption, filterStatus }) {
   const [tick, setTick] = useState(0);
 
-  // Update the tick every 500ms
+  // Update the tick every 100ms
   useEffect(() => {
     const hasRunningTasks = tasks.some(task => task.status === 'In Progress');
     if (!hasRunningTasks) return;
-    const interval = setInterval(() => setTick(t => t + 1), 500);
+    const interval = setInterval(() => setTick(t => t + 1), 100);
     return () => clearInterval(interval);
   }, [tasks]);
 
@@ -17,20 +17,16 @@ function TaskList({ tasks, onStart, onPause, onResume, onCancel, onDelete, sortO
   const getProgress = (task) => {
     if (!task || !task.duration) return 0;
     if (task.status === 'Completed') return 100;
-
-    // If the task is paused or cancelled, calculate the progress based on the remaining time
-    if (task.status === 'Paused' || task.status === 'Cancelled') {
-      const done = task.duration - task.remaining;
-      return Math.min(100, (done / task.duration) * 100);
+  
+    const previouslyCompleted = task.duration - task.remaining;
+  
+    if ((task.status === 'Paused' || task.status === 'Cancelled') || !task.startedAt) {
+      return Math.min(100, (previouslyCompleted / task.duration) * 100);
     }
-    // If the task is in progress, calculate the progress based on the elapsed time
-    if (task.status === 'In Progress' && task.startedAt && task.remaining) {
-      const elapsed = Date.now() - task.startedAt;
-      const previouslyCompleted = task.duration - task.remaining;
-      const totalCompleted = previouslyCompleted + elapsed;
-      return Math.min(100, (totalCompleted / task.duration) * 100);
-    }
-    return 0;
+  
+    const elapsed = Date.now() - task.startedAt;
+    const estimatedCompleted = previouslyCompleted + elapsed;
+    return Math.min(100, (estimatedCompleted / task.duration) * 100);
   };
 
   // Format the date to a human readable format
