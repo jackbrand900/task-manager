@@ -55,7 +55,8 @@ function TaskManager({ apiBase = 'http://localhost:5050' }) {
     fetchTasks();
   };
 
-  // Fetch the tasks from the API every 3 seconds
+  // Fetch the tasks from the API every 3 seconds to get updated task statuses, 
+  // would make this dynamic in a production environment to optimize API calls only for running tasks
   useEffect(() => {
     fetchTasks();
     const interval = setInterval(fetchTasks, 3000);
