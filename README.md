@@ -87,3 +87,4 @@ npm test
 ```
 
 - Tests include: task creation, lifecycle (start/pause/resume/cancel/delete), and error handling
+- If prompted that 0 files have changed since last testing, enter 'a' to run all tests
