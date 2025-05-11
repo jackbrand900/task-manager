@@ -14,11 +14,13 @@ To run the app, from the root directory, run
 docker-compose up --build
 ```
 
-To restart a running container, use
+To restart a running container, from a new terminal run
 
 ```bash
 docker-compose down -v && docker-compose up --build
 ```
+
+Or shut down the existing app using ctrl-c and re-run the first command.
 
 - Frontend runs on: `http://localhost:3000`, here is a [link](http://localhost:3000) to this so you don't have to copy/paste it or type it in
 - Backend runs on: `http://localhost:5050`
