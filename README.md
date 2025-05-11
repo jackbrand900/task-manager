@@ -57,6 +57,7 @@ From the root directory, run:
 
 ```bash
 cd frontend
+npm install
 npm test
 ```
 
@@ -65,6 +66,7 @@ From the root directory, run:
 
 ```bash
 cd backend
+npm install
 npm test
 ```
 
