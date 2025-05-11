@@ -23,7 +23,7 @@ app.post('/tasks', (req, res) => {
     completedAt: null,
     cancelledAt: null,
   };
-  res.status(201).json({ ...tasks[id], startedAt: null });
+  res.status(200).json({ ...tasks[id], startedAt: null });
 });
 
 app.get('/tasks', (req, res) => {
