@@ -20,7 +20,7 @@ To restart a running container, use
 docker-compose down -v && docker-compose up --build
 ```
 
-- Frontend runs on: `http://localhost:3000`
+- Frontend runs on: `http://localhost:3000`, here is a [link](http://localhost:3000) to this so you don't have to copy/paste it or type it in
 - Backend runs on: `http://localhost:5050`
 
 ---
