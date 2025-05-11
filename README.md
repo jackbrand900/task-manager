@@ -12,6 +12,12 @@ This full-stack web app allows users to create, start, pause, resume, cancel, an
 docker-compose up --build
 ```
 
+To restart a running container, use
+
+```bash
+docker-compose down -v && docker-compose up --build
+```bash
+
 - Frontend runs on: `http://localhost:3000`
 - Backend runs on: `http://localhost:5050`
 
