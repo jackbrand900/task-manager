@@ -23,7 +23,7 @@ app.post('/tasks', (req, res) => {
     completedAt: null,
     cancelledAt: null,
   };
-  res.status(200).json({ ...tasks[id], startedAt: null });
+  res.status(201).json({ ...tasks[id], startedAt: null });
 });
 
 app.get('/tasks', (req, res) => {
@@ -112,7 +112,7 @@ app.delete('/tasks/:id', (req, res) => {
 // Only start the server if not in test mode
 if (require.main === module) {
   app.listen(5000, () => {
-    console.log('Backend running on port 5050');
+    console.log('Backend running on port 5000');
   });
 }
 
