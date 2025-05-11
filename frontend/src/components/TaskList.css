@@ -1,69 +1,66 @@
+/* Claude was used to assist in styling */
 .task-sections-wrapper {
     padding: 0 0 64px;
-  }
+}
   
-  /* Sort + Filter controls */
-  .task-sort-controls {
+.task-sort-controls {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
     align-items: flex-end;
-  }
-  
-  .task-sort,
-  .task-filter {
+}
+
+.task-sort,
+.task-filter {
     display: flex;
     flex-direction: column;
     font-size: 0.9rem;
     gap: 4px;
     min-width: 160px;
-  }
-  
-  .task-sort label,
-  .task-filter label {
+}
+
+.task-sort label,
+.task-filter label {
     font-weight: 500;
     color: #444;
-  }
-  
-  .task-sort select,
-  .task-filter select {
+}
+
+.task-sort select,
+.task-filter select {
     padding: 6px 8px;
     border-radius: 6px;
     border: 1px solid #ccc;
     font-size: 0.9rem;
-  }
-  
-  /* Task sections */
-  .task-sections {
+}
+
+.task-sections {
     display: flex;
     gap: 60px;
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: flex-start;
-  }
-  
-  .task-section {
+}
+
+.task-section {
     flex: 1;
     min-width: 300px;
-  }
-  
-  .task-section h2 {
+}
+
+.task-section h2 {
     margin-top: 10px;
     margin-bottom: 16px;
     color: #444;
     border-bottom: 1px solid #ddd;
     padding-bottom: 4px;
-  }
-  
-  /* Task list */
-  .task-list {
+}
+
+.task-list {
     display: flex;
     flex-direction: column;
     gap: 16px;
-  }
-  
-  /* Task card */
-  .task-card {
+}
+
+.task-card {
     position: relative;
     border: 1px solid #ccc;
     border-radius: 12px;
@@ -73,33 +70,32 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-  }
-  
-  .task-card h3 {
+}
+
+.task-card h3 {
     margin: 0 0 6px 0;
     word-break: break-word;
     overflow-wrap: break-word;
-  }
-  
-  .task-desc {
+}
+
+.task-desc {
     font-size: 0.9em;
     color: #666;
     margin-bottom: 10px;
     word-break: break-word;
     overflow-wrap: break-word;
-  }
-  
-  /* Task actions */
-  .task-actions {
+}
+
+.task-actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 12px;
     gap: 10px;
     flex-wrap: wrap;
-  }
-  
-  .task-actions button {
+}
+
+.task-actions button {
     padding: 6px 12px;
     border: none;
     color: white;
@@ -107,77 +103,73 @@
     cursor: pointer;
     font-size: 0.85rem;
     background-color: #007bff;
-  }
-  
-  .task-actions button:hover {
+}
+
+.task-actions button:hover {
     opacity: 0.9;
-  }
-  
-  /* Cancel button (overrides base button style) */
-  .task-actions button.cancel-button {
+}
+
+.task-actions button.cancel-button {
     background-color: #dc3545;
     color: white;
     margin-left: auto;
-  }
-  
-  .task-actions button.cancel-button:hover {
+}
+
+.task-actions button.cancel-button:hover {
     background-color: #c82333;
-  }
-  
-  /* Status label styles */
-  .status {
+}
+
+.status {
     font-weight: bold;
     padding: 2px 8px;
     border-radius: 12px;
     font-size: 0.75em;
     text-transform: uppercase;
     display: inline-block;
-  }
-  
-  .status-pending {
+}
+
+.status-pending {
     background-color: #ffeeba;
     color: #856404;
-  }
-  
-  .status-in-progress {
+}
+
+.status-in-progress {
     background-color: #cce5ff;
     color: #004085;
-  }
-  
-  .status-paused {
+}
+
+.status-paused {
     background-color: #fff3cd;
     color: #856404;
-  }
-  
-  .status-completed {
+}
+
+.status-completed {
     background-color: #d4edda;
     color: #155724;
-  }
-  
-  .status-cancelled {
+}
+
+.status-cancelled {
     background-color: #f8d7da;
     color: #721c24;
-  }
-  
-  /* Progress bar */
-  .progress-bar {
+}
+
+.progress-bar {
     height: 8px;
     width: 100%;
     background-color: #eee;
     border-radius: 4px;
     overflow: hidden;
     margin-top: 10px;
-  }
-  
-  .progress-fill {
+}
+
+.progress-fill {
     height: 100%;
     background-color: #28a745;
     border-radius: 4px;
     transition: width 0.3s linear;
-  }
-  
-  /* Delete button */
-  .delete-button {
+}
+
+.delete-button {
     position: absolute;
     top: 8px;
     right: 10px;
@@ -186,14 +178,13 @@
     font-size: 1.2rem;
     color: #888;
     cursor: pointer;
-  }
-  
-  .delete-button:hover {
+}
+
+.delete-button:hover {
     color: #e60000;
-  }
-  
-  /* Timestamps */
-  .task-timestamps {
+}
+
+.task-timestamps {
     margin-top: 10px;
     font-size: 0.8rem;
     color: #888;
@@ -201,28 +192,26 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
-  }
-  
-  .timestamp-label {
+}
+
+.timestamp-label {
     font-weight: bold;
     color: #666;
     margin-right: 4px;
-  }
-  
-  /* Header wrapper (title and form alignment) */
-  .task-header-wrapper {
+}
+
+.task-header-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     padding: 0 16px;
     margin-bottom: 32px;
-  }
-  
-  .task-header-wrapper h1 {
+}
+
+.task-header-wrapper h1 {
     margin-bottom: 16px;
     color: #333;
     font-size: 2rem;
-  }
-  
-  
+}
+

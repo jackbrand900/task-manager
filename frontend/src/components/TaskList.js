@@ -5,6 +5,7 @@ import './TaskList.css';
 function TaskList({ tasks, onStart, onPause, onResume, onCancel, onDelete, sortOption, filterStatus }) {
   const [tick, setTick] = useState(0);
 
+  // Update the tick every 500ms
   useEffect(() => {
     const hasRunningTasks = tasks.some(task => task.status === 'In Progress');
     if (!hasRunningTasks) return;
@@ -12,13 +13,17 @@ function TaskList({ tasks, onStart, onPause, onResume, onCancel, onDelete, sortO
     return () => clearInterval(interval);
   }, [tasks]);
 
+  // Get the progress of a task 
   const getProgress = (task) => {
     if (!task || !task.duration) return 0;
     if (task.status === 'Completed') return 100;
+
+    // If the task is paused or cancelled, calculate the progress based on the remaining time
     if (task.status === 'Paused' || task.status === 'Cancelled') {
       const done = task.duration - task.remaining;
       return Math.min(100, (done / task.duration) * 100);
     }
+    // If the task is in progress, calculate the progress based on the elapsed time
     if (task.status === 'In Progress' && task.startedAt && task.remaining) {
       const elapsed = Date.now() - task.startedAt;
       const previouslyCompleted = task.duration - task.remaining;
@@ -28,6 +33,7 @@ function TaskList({ tasks, onStart, onPause, onResume, onCancel, onDelete, sortO
     return 0;
   };
 
+  // Format the date to a human readable format
   const formatDate = (timestamp) => {
     if (!timestamp) return '';
     return new Date(timestamp).toLocaleString('en-GB', {
@@ -39,6 +45,7 @@ function TaskList({ tasks, onStart, onPause, onResume, onCancel, onDelete, sortO
     });
   };
 
+  // Sort the tasks
   const sortTasks = (taskList) => {
     switch (sortOption) {
       case 'created-oldest':
@@ -53,16 +60,20 @@ function TaskList({ tasks, onStart, onPause, onResume, onCancel, onDelete, sortO
     }
   };
 
+  // Filter the tasks
   const filterTasks = (list) =>
     filterStatus === 'all' ? list : list.filter(task => task.status === filterStatus);
 
   const activeStatuses = ['Pending', 'In Progress', 'Paused'];
   const completedStatuses = ['Completed', 'Cancelled'];
 
+  // Sort and filter the tasks
   const pendingTasks = sortTasks(filterTasks(tasks.filter(t => activeStatuses.includes(t.status))));
   const completedTasks = sortTasks(filterTasks(tasks.filter(t => completedStatuses.includes(t.status))));
 
+  // Render the tasks by status
   const renderTask = (task) => (
+    // Render the task card with animation (Claude was used to assist with the animation)
     <motion.div
       layout
       key={task.id}

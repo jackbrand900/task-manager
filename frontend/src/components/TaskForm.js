@@ -4,7 +4,8 @@ import './TaskForm.css';
 function TaskForm({ onCreate }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-
+  
+  // Submit the form
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title.trim()) return;
@@ -13,6 +14,7 @@ function TaskForm({ onCreate }) {
     setDescription('');
   };
 
+  // Render the form
   return (
     <form className="task-form" onSubmit={handleSubmit}>
       <input

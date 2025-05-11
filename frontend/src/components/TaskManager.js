@@ -8,12 +8,14 @@ function TaskManager({ apiBase = 'http://localhost:5050' }) {
   const [sortOption, setSortOption] = useState('created-newest');
   const [filterStatus, setFilterStatus] = useState('all');
 
+  // Fetch the tasks from the API
   const fetchTasks = async () => {
     const res = await fetch(`${apiBase}/tasks`);
     const data = await res.json();
     setTasks(data);
   };
 
+  // Create a new task
   const createTask = async (title, description) => {
     await fetch(`${apiBase}/tasks`, {
       method: 'POST',
@@ -23,31 +25,37 @@ function TaskManager({ apiBase = 'http://localhost:5050' }) {
     fetchTasks();
   };
 
+  // Start a task
   const startTask = async (id) => {
     await fetch(`${apiBase}/tasks/${id}/start`, { method: 'POST' });
     fetchTasks();
   };
 
+  // Pause a task
   const pauseTask = async (id) => {
     await fetch(`${apiBase}/tasks/${id}/pause`, { method: 'POST' });
     fetchTasks();
   };
 
+  // Resume a task
   const resumeTask = async (id) => {
     await fetch(`${apiBase}/tasks/${id}/resume`, { method: 'POST' });
     fetchTasks();
   };
 
+  // Cancel a task
   const cancelTask = async (id) => {
     await fetch(`${apiBase}/tasks/${id}/cancel`, { method: 'POST' });
     fetchTasks();
   };
 
+  // Delete a task
   const deleteTask = async (id) => {
     await fetch(`${apiBase}/tasks/${id}`, { method: 'DELETE' });
     fetchTasks();
   };
 
+  // Fetch the tasks from the API every 3 seconds
   useEffect(() => {
     fetchTasks();
     const interval = setInterval(fetchTasks, 3000);
